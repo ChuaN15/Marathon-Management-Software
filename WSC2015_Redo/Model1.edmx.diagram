@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="50b28be008a7439e9e9e807f9aace639" Name="Diagram1" ZoomLevel="47">
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Charity" Width="1.5" PointX="6" PointY="2.125" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Country" Width="1.5" PointX="0.75" PointY="5.5" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Event" Width="1.5" PointX="5.25" PointY="11.75" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.EventType" Width="1.5" PointX="3" PointY="15.375" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Gender" Width="1.5" PointX="3.75" PointY="2.25" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Marathon" Width="1.5" PointX="3" PointY="12" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Position" Width="1.5" PointX="10.75" PointY="1.375" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.RaceKitOption" Width="1.5" PointX="6" PointY="16.25" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Registration" Width="1.5" PointX="8.25" PointY="4.75" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.RegistrationEvent" Width="1.5" PointX="10.5" PointY="8.5" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.RegistrationStatu" Width="1.5" PointX="6" PointY="8.875" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Role" Width="1.5" PointX="1.5" PointY="9" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Runner" Width="1.5" PointX="6" PointY="5.25" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Sponsorship" Width="1.5" PointX="10.5" PointY="5.625" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Staff" Width="1.5" PointX="13" PointY="1" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Timesheet" Width="1.5" PointX="15.25" PointY="1.375" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.User" Width="1.5" PointX="3.75" PointY="8.625" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Volunteer" Width="1.5" PointX="3" PointY="5.375" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Rank_View" Width="1.5" PointX="0.75" PointY="0.75" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Sponsor_View" Width="1.5" PointX="7.75" PointY="11.75" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Volunteer_View" Width="1.5" PointX="9.75" PointY="11.75" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Registrat__Chari__34C8D9D1" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Marathon__Countr__398D8EEE" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Runner__CountryC__2E1BDC42" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Volunteer__Count__300424B4" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Event__EventType__35BCFE0A" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Event__MarathonI__36B12243" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Registrat__Event__38996AB5" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Runner__Gender__2D27B809" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Volunteer__Gende__2F10007B" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK_Staff_Position" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Registrat__RaceK__32E0915F" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Registrat__Regis__33D4B598" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Registrat__Regis__37A5467C" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Registrat__Runne__31EC6D26" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Sponsorsh__Regis__30F848ED" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__User__RoleId__2B3F6F97" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK__Runner__Email__2C3393D0" />
+        <AssociationConnector Association="WSC2015_RedoModel.FK_Timesheet_Staff" />
+        <EntityTypeShape EntityType="WSC2015_RedoModel.Runner_View" Width="1.5" PointX="12.375" PointY="11.75" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

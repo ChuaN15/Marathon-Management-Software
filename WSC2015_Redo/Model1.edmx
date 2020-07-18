@@ -1,0 +1,1450 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+    <Schema Namespace="WSC2015_RedoModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Charity">
+          <Key>
+            <PropertyRef Name="CharityId" />
+          </Key>
+          <Property Name="CharityId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="CharityName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CharityDescription" Type="nvarchar" MaxLength="2000" />
+          <Property Name="CharityLogo" Type="nvarchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryCode" />
+          </Key>
+          <Property Name="CountryCode" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="CountryFlag" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="nchar" MaxLength="6" Nullable="false" />
+          <Property Name="EventName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="EventTypeId" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="MarathonId" Type="tinyint" Nullable="false" />
+          <Property Name="StartDateTime" Type="datetime" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="2" />
+          <Property Name="MaxParticipants" Type="smallint" />
+        </EntityType>
+        <EntityType Name="EventType">
+          <Key>
+            <PropertyRef Name="EventTypeId" />
+          </Key>
+          <Property Name="EventTypeId" Type="nchar" MaxLength="2" Nullable="false" />
+          <Property Name="EventTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Gender" />
+          </Key>
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Marathon">
+          <Key>
+            <PropertyRef Name="MarathonId" />
+          </Key>
+          <Property Name="MarathonId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="MarathonName" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="CityName" Type="nvarchar" MaxLength="80" />
+          <Property Name="CountryCode" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="YearHeld" Type="smallint" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="PositionId" />
+          </Key>
+          <Property Name="PositionId" Type="int" Nullable="false" />
+          <Property Name="PositionName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="PositionDescription" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="PayPeriod" Type="varchar" MaxLength="10" Nullable="false" />
+          <Property Name="PayRate" Type="varchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RaceKitOption">
+          <Key>
+            <PropertyRef Name="RaceKitOptionId" />
+          </Key>
+          <Property Name="RaceKitOptionId" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="RaceKitOption" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="RegistrationId" />
+          </Key>
+          <Property Name="RegistrationId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RunnerId" Type="int" Nullable="false" />
+          <Property Name="RegistrationDateTime" Type="datetime" Nullable="false" />
+          <Property Name="RaceKitOptionId" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="RegistrationStatusId" Type="tinyint" Nullable="false" />
+          <Property Name="Cost" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+          <Property Name="CharityId" Type="int" Nullable="false" />
+          <Property Name="SponsorshipTarget" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="RegistrationEvent">
+          <Key>
+            <PropertyRef Name="RegistrationEventId" />
+          </Key>
+          <Property Name="RegistrationEventId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistrationId" Type="int" Nullable="false" />
+          <Property Name="EventId" Type="nchar" MaxLength="6" Nullable="false" />
+          <Property Name="BibNumber" Type="smallint" />
+          <Property Name="RaceTime" Type="int" />
+        </EntityType>
+        <EntityType Name="RegistrationStatus">
+          <Key>
+            <PropertyRef Name="RegistrationStatusId" />
+          </Key>
+          <Property Name="RegistrationStatusId" Type="tinyint" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RegistrationStatus" Type="nvarchar" MaxLength="80" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="nchar" MaxLength="1" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="50" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Runner">
+          <Key>
+            <PropertyRef Name="RunnerId" />
+          </Key>
+          <Property Name="RunnerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="CountryCode" Type="nchar" MaxLength="3" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sponsorship">
+          <Key>
+            <PropertyRef Name="SponsorshipId" />
+          </Key>
+          <Property Name="SponsorshipId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="SponsorName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="RegistrationId" Type="int" Nullable="false" />
+          <Property Name="Amount" Type="decimal" Precision="10" Scale="2" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="StaffId" />
+          </Key>
+          <Property Name="StaffId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="DateOfBirth" Type="date" Nullable="false" />
+          <Property Name="Gender" Type="varchar" MaxLength="20" Nullable="false" />
+          <Property Name="PositionId" Type="int" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="500" Nullable="false" />
+          <Property Name="Comments" Type="varchar" MaxLength="5000" />
+          <Property Name="LastName" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="Timesheet">
+          <Key>
+            <PropertyRef Name="TimesheetId" />
+          </Key>
+          <Property Name="TimesheetId" Type="int" Nullable="false" />
+          <Property Name="StaffId" Type="int" Nullable="false" />
+          <Property Name="StartDateTime" Type="datetime" Nullable="false" />
+          <Property Name="EndDateTime" Type="datetime" Nullable="false" />
+          <Property Name="PayAmount" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="Password" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="80" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="80" />
+          <Property Name="RoleId" Type="nchar" MaxLength="1" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="VolunteerId" />
+          </Key>
+          <Property Name="VolunteerId" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="80" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="80" />
+          <Property Name="CountryCode" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WSC2015_Redo.dbo.Rank_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Rank_View">
+          <Key>
+            <PropertyRef Name="RunnerId" />
+            <PropertyRef Name="MarathonName" />
+            <PropertyRef Name="EventName" />
+            <PropertyRef Name="overallrank" />
+            <PropertyRef Name="categoryrank" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="category" />
+            <PropertyRef Name="EventTypeName" />
+            <PropertyRef Name="RegistrationEventId" />
+          </Key>
+          <Property Name="RunnerId" Type="int" Nullable="false" />
+          <Property Name="MarathonName" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="EventName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RaceTime" Type="int" />
+          <Property Name="overallrank" Type="int" Nullable="false" />
+          <Property Name="categoryrank" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="DateOfBirth" Type="datetime" />
+          <Property Name="category" Type="varchar" MaxLength="1" Nullable="false" />
+          <Property Name="EventTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="RegistrationEventId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WSC2015_Redo.dbo.Runner_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Runner_View">
+          <Key>
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="RegistrationStatus" />
+            <PropertyRef Name="EventTypeName" />
+            <PropertyRef Name="MarathonId" />
+            <PropertyRef Name="RunnerId" />
+          </Key>
+          <Property Name="FirstName" Type="nvarchar" MaxLength="80" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="80" />
+          <Property Name="Email" Type="nvarchar" MaxLength="100" Nullable="false" />
+          <Property Name="RegistrationStatus" Type="nvarchar" MaxLength="80" Nullable="false" />
+          <Property Name="EventTypeName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="MarathonId" Type="tinyint" Nullable="false" />
+          <Property Name="RunnerId" Type="int" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WSC2015_Redo.dbo.Sponsor_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Sponsor_View">
+          <Key>
+            <PropertyRef Name="RegistrationEventId" />
+            <PropertyRef Name="MarathonId" />
+          </Key>
+          <Property Name="Expr1" Type="nvarchar" MaxLength="201" />
+          <Property Name="RegistrationEventId" Type="int" Nullable="false" />
+          <Property Name="MarathonId" Type="tinyint" Nullable="false" />
+        </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'WSC2015_Redo.dbo.Volunteer_View' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="Volunteer_View">
+          <Key>
+            <PropertyRef Name="VolunteerId" />
+            <PropertyRef Name="CountryCode" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="CountryName" />
+          </Key>
+          <Property Name="VolunteerId" Type="int" Nullable="false" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="80" />
+          <Property Name="LastName" Type="nvarchar" MaxLength="80" />
+          <Property Name="CountryCode" Type="nchar" MaxLength="3" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="10" Nullable="false" />
+          <Property Name="CountryName" Type="nvarchar" MaxLength="100" Nullable="false" />
+        </EntityType>
+        <Association Name="FK__Event__EventType__35BCFE0A">
+          <End Role="EventType" Type="Self.EventType" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventType">
+              <PropertyRef Name="EventTypeId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="EventTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Event__MarathonI__36B12243">
+          <End Role="Marathon" Type="Self.Marathon" Multiplicity="1" />
+          <End Role="Event" Type="Self.Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marathon">
+              <PropertyRef Name="MarathonId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="MarathonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Marathon__Countr__398D8EEE">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Marathon" Type="Self.Marathon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryCode" />
+            </Principal>
+            <Dependent Role="Marathon">
+              <PropertyRef Name="CountryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Chari__34C8D9D1">
+          <End Role="Charity" Type="Self.Charity" Multiplicity="1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Charity">
+              <PropertyRef Name="CharityId" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="CharityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Event__38996AB5">
+          <End Role="Event" Type="Self.Event" Multiplicity="1" />
+          <End Role="RegistrationEvent" Type="Self.RegistrationEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="RegistrationEvent">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__RaceK__32E0915F">
+          <End Role="RaceKitOption" Type="Self.RaceKitOption" Multiplicity="1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaceKitOption">
+              <PropertyRef Name="RaceKitOptionId" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="RaceKitOptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Regis__33D4B598">
+          <End Role="RegistrationStatus" Type="Self.RegistrationStatus" Multiplicity="1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegistrationStatus">
+              <PropertyRef Name="RegistrationStatusId" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="RegistrationStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Regis__37A5467C">
+          <End Role="Registration" Type="Self.Registration" Multiplicity="1" />
+          <End Role="RegistrationEvent" Type="Self.RegistrationEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="RegistrationId" />
+            </Principal>
+            <Dependent Role="RegistrationEvent">
+              <PropertyRef Name="RegistrationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Runne__31EC6D26">
+          <End Role="Runner" Type="Self.Runner" Multiplicity="1" />
+          <End Role="Registration" Type="Self.Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Runner">
+              <PropertyRef Name="RunnerId" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="RunnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Runner__CountryC__2E1BDC42">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Runner" Type="Self.Runner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryCode" />
+            </Principal>
+            <Dependent Role="Runner">
+              <PropertyRef Name="CountryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Runner__Email__2C3393D0">
+          <End Role="User" Type="Self.User" Multiplicity="1" />
+          <End Role="Runner" Type="Self.Runner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Runner">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Runner__Gender__2D27B809">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Runner" Type="Self.Runner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Gender" />
+            </Principal>
+            <Dependent Role="Runner">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sponsorsh__Regis__30F848ED">
+          <End Role="Registration" Type="Self.Registration" Multiplicity="1" />
+          <End Role="Sponsorship" Type="Self.Sponsorship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="RegistrationId" />
+            </Principal>
+            <Dependent Role="Sponsorship">
+              <PropertyRef Name="RegistrationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__RoleId__2B3F6F97">
+          <End Role="Role" Type="Self.Role" Multiplicity="1" />
+          <End Role="User" Type="Self.User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Volunteer__Count__300424B4">
+          <End Role="Country" Type="Self.Country" Multiplicity="1" />
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryCode" />
+            </Principal>
+            <Dependent Role="Volunteer">
+              <PropertyRef Name="CountryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Volunteer__Gende__2F10007B">
+          <End Role="Gender" Type="Self.Gender" Multiplicity="1" />
+          <End Role="Volunteer" Type="Self.Volunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Gender" />
+            </Principal>
+            <Dependent Role="Volunteer">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Position">
+          <End Role="Position" Type="Self.Position" Multiplicity="1" />
+          <End Role="Staff" Type="Self.Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="PositionId" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Timesheet_Staff">
+          <End Role="Staff" Type="Self.Staff" Multiplicity="1" />
+          <End Role="Timesheet" Type="Self.Timesheet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="StaffId" />
+            </Principal>
+            <Dependent Role="Timesheet">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="WSC2015_RedoModelStoreContainer">
+          <EntitySet Name="Charity" EntityType="Self.Charity" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Country" EntityType="Self.Country" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Event" EntityType="Self.Event" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="EventType" EntityType="Self.EventType" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Gender" EntityType="Self.Gender" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Marathon" EntityType="Self.Marathon" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Position" EntityType="Self.Position" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RaceKitOption" EntityType="Self.RaceKitOption" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Registration" EntityType="Self.Registration" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistrationEvent" EntityType="Self.RegistrationEvent" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="RegistrationStatus" EntityType="Self.RegistrationStatus" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Role" EntityType="Self.Role" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Runner" EntityType="Self.Runner" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Sponsorship" EntityType="Self.Sponsorship" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Staff" EntityType="Self.Staff" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Timesheet" EntityType="Self.Timesheet" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="User" EntityType="Self.User" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Volunteer" EntityType="Self.Volunteer" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Rank_View" EntityType="Self.Rank_View" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Rank_View].[RunnerId] AS [RunnerId], 
+    [Rank_View].[MarathonName] AS [MarathonName], 
+    [Rank_View].[EventName] AS [EventName], 
+    [Rank_View].[RaceTime] AS [RaceTime], 
+    [Rank_View].[overallrank] AS [overallrank], 
+    [Rank_View].[categoryrank] AS [categoryrank], 
+    [Rank_View].[Gender] AS [Gender], 
+    [Rank_View].[DateOfBirth] AS [DateOfBirth], 
+    [Rank_View].[category] AS [category], 
+    [Rank_View].[EventTypeName] AS [EventTypeName], 
+    [Rank_View].[RegistrationEventId] AS [RegistrationEventId]
+    FROM [dbo].[Rank_View] AS [Rank_View]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Runner_View" EntityType="Self.Runner_View" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Runner_View].[FirstName] AS [FirstName], 
+    [Runner_View].[LastName] AS [LastName], 
+    [Runner_View].[Email] AS [Email], 
+    [Runner_View].[RegistrationStatus] AS [RegistrationStatus], 
+    [Runner_View].[EventTypeName] AS [EventTypeName], 
+    [Runner_View].[MarathonId] AS [MarathonId], 
+    [Runner_View].[RunnerId] AS [RunnerId]
+    FROM [dbo].[Runner_View] AS [Runner_View]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Sponsor_View" EntityType="Self.Sponsor_View" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Sponsor_View].[Expr1] AS [Expr1], 
+    [Sponsor_View].[RegistrationEventId] AS [RegistrationEventId], 
+    [Sponsor_View].[MarathonId] AS [MarathonId]
+    FROM [dbo].[Sponsor_View] AS [Sponsor_View]</DefiningQuery>
+          </EntitySet>
+          <EntitySet Name="Volunteer_View" EntityType="Self.Volunteer_View" store:Type="Views" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [Volunteer_View].[VolunteerId] AS [VolunteerId], 
+    [Volunteer_View].[FirstName] AS [FirstName], 
+    [Volunteer_View].[LastName] AS [LastName], 
+    [Volunteer_View].[CountryCode] AS [CountryCode], 
+    [Volunteer_View].[Gender] AS [Gender], 
+    [Volunteer_View].[CountryName] AS [CountryName]
+    FROM [dbo].[Volunteer_View] AS [Volunteer_View]</DefiningQuery>
+          </EntitySet>
+          <AssociationSet Name="FK__Event__EventType__35BCFE0A" Association="Self.FK__Event__EventType__35BCFE0A">
+            <End Role="EventType" EntitySet="EventType" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Event__MarathonI__36B12243" Association="Self.FK__Event__MarathonI__36B12243">
+            <End Role="Marathon" EntitySet="Marathon" />
+            <End Role="Event" EntitySet="Event" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Marathon__Countr__398D8EEE" Association="Self.FK__Marathon__Countr__398D8EEE">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Marathon" EntitySet="Marathon" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Chari__34C8D9D1" Association="Self.FK__Registrat__Chari__34C8D9D1">
+            <End Role="Charity" EntitySet="Charity" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Event__38996AB5" Association="Self.FK__Registrat__Event__38996AB5">
+            <End Role="Event" EntitySet="Event" />
+            <End Role="RegistrationEvent" EntitySet="RegistrationEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__RaceK__32E0915F" Association="Self.FK__Registrat__RaceK__32E0915F">
+            <End Role="RaceKitOption" EntitySet="RaceKitOption" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Regis__33D4B598" Association="Self.FK__Registrat__Regis__33D4B598">
+            <End Role="RegistrationStatus" EntitySet="RegistrationStatus" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Regis__37A5467C" Association="Self.FK__Registrat__Regis__37A5467C">
+            <End Role="Registration" EntitySet="Registration" />
+            <End Role="RegistrationEvent" EntitySet="RegistrationEvent" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Runne__31EC6D26" Association="Self.FK__Registrat__Runne__31EC6D26">
+            <End Role="Runner" EntitySet="Runner" />
+            <End Role="Registration" EntitySet="Registration" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Runner__CountryC__2E1BDC42" Association="Self.FK__Runner__CountryC__2E1BDC42">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Runner" EntitySet="Runner" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Runner__Email__2C3393D0" Association="Self.FK__Runner__Email__2C3393D0">
+            <End Role="User" EntitySet="User" />
+            <End Role="Runner" EntitySet="Runner" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Runner__Gender__2D27B809" Association="Self.FK__Runner__Gender__2D27B809">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Runner" EntitySet="Runner" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sponsorsh__Regis__30F848ED" Association="Self.FK__Sponsorsh__Regis__30F848ED">
+            <End Role="Registration" EntitySet="Registration" />
+            <End Role="Sponsorship" EntitySet="Sponsorship" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__RoleId__2B3F6F97" Association="Self.FK__User__RoleId__2B3F6F97">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User" EntitySet="User" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Volunteer__Count__300424B4" Association="Self.FK__Volunteer__Count__300424B4">
+            <End Role="Country" EntitySet="Country" />
+            <End Role="Volunteer" EntitySet="Volunteer" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Volunteer__Gende__2F10007B" Association="Self.FK__Volunteer__Gende__2F10007B">
+            <End Role="Gender" EntitySet="Gender" />
+            <End Role="Volunteer" EntitySet="Volunteer" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Position" Association="Self.FK_Staff_Position">
+            <End Role="Position" EntitySet="Position" />
+            <End Role="Staff" EntitySet="Staff" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Timesheet_Staff" Association="Self.FK_Timesheet_Staff">
+            <End Role="Staff" EntitySet="Staff" />
+            <End Role="Timesheet" EntitySet="Timesheet" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema></edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="WSC2015_RedoModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityContainer Name="WSC2015_RedoEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Charities" EntityType="WSC2015_RedoModel.Charity" />
+          <EntitySet Name="Countries" EntityType="WSC2015_RedoModel.Country" />
+          <EntitySet Name="Events" EntityType="WSC2015_RedoModel.Event" />
+          <EntitySet Name="EventTypes" EntityType="WSC2015_RedoModel.EventType" />
+          <EntitySet Name="Genders" EntityType="WSC2015_RedoModel.Gender" />
+          <EntitySet Name="Marathons" EntityType="WSC2015_RedoModel.Marathon" />
+          <EntitySet Name="Positions" EntityType="WSC2015_RedoModel.Position" />
+          <EntitySet Name="RaceKitOptions" EntityType="WSC2015_RedoModel.RaceKitOption" />
+          <EntitySet Name="Registrations" EntityType="WSC2015_RedoModel.Registration" />
+          <EntitySet Name="RegistrationEvents" EntityType="WSC2015_RedoModel.RegistrationEvent" />
+          <EntitySet Name="RegistrationStatus" EntityType="WSC2015_RedoModel.RegistrationStatu" />
+          <EntitySet Name="Roles" EntityType="WSC2015_RedoModel.Role" />
+          <EntitySet Name="Runners" EntityType="WSC2015_RedoModel.Runner" />
+          <EntitySet Name="Sponsorships" EntityType="WSC2015_RedoModel.Sponsorship" />
+          <EntitySet Name="Staffs" EntityType="WSC2015_RedoModel.Staff" />
+          <EntitySet Name="Timesheets" EntityType="WSC2015_RedoModel.Timesheet" />
+          <EntitySet Name="Users" EntityType="WSC2015_RedoModel.User" />
+          <EntitySet Name="Volunteers" EntityType="WSC2015_RedoModel.Volunteer" />
+          <EntitySet Name="Rank_View" EntityType="WSC2015_RedoModel.Rank_View" />
+          <EntitySet Name="Sponsor_View" EntityType="WSC2015_RedoModel.Sponsor_View" />
+          <EntitySet Name="Volunteer_View" EntityType="WSC2015_RedoModel.Volunteer_View" />
+          <AssociationSet Name="FK__Registrat__Chari__34C8D9D1" Association="WSC2015_RedoModel.FK__Registrat__Chari__34C8D9D1">
+            <End Role="Charity" EntitySet="Charities" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Marathon__Countr__398D8EEE" Association="WSC2015_RedoModel.FK__Marathon__Countr__398D8EEE">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Marathon" EntitySet="Marathons" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Runner__CountryC__2E1BDC42" Association="WSC2015_RedoModel.FK__Runner__CountryC__2E1BDC42">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Runner" EntitySet="Runners" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Volunteer__Count__300424B4" Association="WSC2015_RedoModel.FK__Volunteer__Count__300424B4">
+            <End Role="Country" EntitySet="Countries" />
+            <End Role="Volunteer" EntitySet="Volunteers" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Event__EventType__35BCFE0A" Association="WSC2015_RedoModel.FK__Event__EventType__35BCFE0A">
+            <End Role="EventType" EntitySet="EventTypes" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Event__MarathonI__36B12243" Association="WSC2015_RedoModel.FK__Event__MarathonI__36B12243">
+            <End Role="Marathon" EntitySet="Marathons" />
+            <End Role="Event" EntitySet="Events" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Event__38996AB5" Association="WSC2015_RedoModel.FK__Registrat__Event__38996AB5">
+            <End Role="Event" EntitySet="Events" />
+            <End Role="RegistrationEvent" EntitySet="RegistrationEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Runner__Gender__2D27B809" Association="WSC2015_RedoModel.FK__Runner__Gender__2D27B809">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Runner" EntitySet="Runners" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Volunteer__Gende__2F10007B" Association="WSC2015_RedoModel.FK__Volunteer__Gende__2F10007B">
+            <End Role="Gender" EntitySet="Genders" />
+            <End Role="Volunteer" EntitySet="Volunteers" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Staff_Position" Association="WSC2015_RedoModel.FK_Staff_Position">
+            <End Role="Position" EntitySet="Positions" />
+            <End Role="Staff" EntitySet="Staffs" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__RaceK__32E0915F" Association="WSC2015_RedoModel.FK__Registrat__RaceK__32E0915F">
+            <End Role="RaceKitOption" EntitySet="RaceKitOptions" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Regis__33D4B598" Association="WSC2015_RedoModel.FK__Registrat__Regis__33D4B598">
+            <End Role="RegistrationStatu" EntitySet="RegistrationStatus" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Regis__37A5467C" Association="WSC2015_RedoModel.FK__Registrat__Regis__37A5467C">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="RegistrationEvent" EntitySet="RegistrationEvents" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Registrat__Runne__31EC6D26" Association="WSC2015_RedoModel.FK__Registrat__Runne__31EC6D26">
+            <End Role="Runner" EntitySet="Runners" />
+            <End Role="Registration" EntitySet="Registrations" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Sponsorsh__Regis__30F848ED" Association="WSC2015_RedoModel.FK__Sponsorsh__Regis__30F848ED">
+            <End Role="Registration" EntitySet="Registrations" />
+            <End Role="Sponsorship" EntitySet="Sponsorships" />
+          </AssociationSet>
+          <AssociationSet Name="FK__User__RoleId__2B3F6F97" Association="WSC2015_RedoModel.FK__User__RoleId__2B3F6F97">
+            <End Role="Role" EntitySet="Roles" />
+            <End Role="User" EntitySet="Users" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Runner__Email__2C3393D0" Association="WSC2015_RedoModel.FK__Runner__Email__2C3393D0">
+            <End Role="User" EntitySet="Users" />
+            <End Role="Runner" EntitySet="Runners" />
+          </AssociationSet>
+          <AssociationSet Name="FK_Timesheet_Staff" Association="WSC2015_RedoModel.FK_Timesheet_Staff">
+            <End Role="Staff" EntitySet="Staffs" />
+            <End Role="Timesheet" EntitySet="Timesheets" />
+          </AssociationSet>
+          <EntitySet Name="Runner_View" EntityType="WSC2015_RedoModel.Runner_View" />
+        </EntityContainer>
+        <EntityType Name="Charity">
+          <Key>
+            <PropertyRef Name="CharityId" />
+          </Key>
+          <Property Name="CharityId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CharityName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CharityDescription" Type="String" MaxLength="2000" FixedLength="false" Unicode="true" />
+          <Property Name="CharityLogo" Type="String" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Registrations" Relationship="WSC2015_RedoModel.FK__Registrat__Chari__34C8D9D1" FromRole="Charity" ToRole="Registration" />
+        </EntityType>
+        <EntityType Name="Country">
+          <Key>
+            <PropertyRef Name="CountryCode" />
+          </Key>
+          <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="CountryFlag" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Marathons" Relationship="WSC2015_RedoModel.FK__Marathon__Countr__398D8EEE" FromRole="Country" ToRole="Marathon" />
+          <NavigationProperty Name="Runners" Relationship="WSC2015_RedoModel.FK__Runner__CountryC__2E1BDC42" FromRole="Country" ToRole="Runner" />
+          <NavigationProperty Name="Volunteers" Relationship="WSC2015_RedoModel.FK__Volunteer__Count__300424B4" FromRole="Country" ToRole="Volunteer" />
+        </EntityType>
+        <EntityType Name="Event">
+          <Key>
+            <PropertyRef Name="EventId" />
+          </Key>
+          <Property Name="EventId" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Name="EventName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="EventTypeId" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="MarathonId" Type="Byte" Nullable="false" />
+          <Property Name="StartDateTime" Type="DateTime" Precision="3" />
+          <Property Name="Cost" Type="Decimal" Precision="10" Scale="2" />
+          <Property Name="MaxParticipants" Type="Int16" />
+          <NavigationProperty Name="EventType" Relationship="WSC2015_RedoModel.FK__Event__EventType__35BCFE0A" FromRole="Event" ToRole="EventType" />
+          <NavigationProperty Name="Marathon" Relationship="WSC2015_RedoModel.FK__Event__MarathonI__36B12243" FromRole="Event" ToRole="Marathon" />
+          <NavigationProperty Name="RegistrationEvents" Relationship="WSC2015_RedoModel.FK__Registrat__Event__38996AB5" FromRole="Event" ToRole="RegistrationEvent" />
+        </EntityType>
+        <EntityType Name="EventType">
+          <Key>
+            <PropertyRef Name="EventTypeId" />
+          </Key>
+          <Property Name="EventTypeId" Type="String" Nullable="false" MaxLength="2" FixedLength="true" Unicode="true" />
+          <Property Name="EventTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Events" Relationship="WSC2015_RedoModel.FK__Event__EventType__35BCFE0A" FromRole="EventType" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Gender">
+          <Key>
+            <PropertyRef Name="Gender1" />
+          </Key>
+          <Property Name="Gender1" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Runners" Relationship="WSC2015_RedoModel.FK__Runner__Gender__2D27B809" FromRole="Gender" ToRole="Runner" />
+          <NavigationProperty Name="Volunteers" Relationship="WSC2015_RedoModel.FK__Volunteer__Gende__2F10007B" FromRole="Gender" ToRole="Volunteer" />
+        </EntityType>
+        <EntityType Name="Marathon">
+          <Key>
+            <PropertyRef Name="MarathonId" />
+          </Key>
+          <Property Name="MarathonId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="MarathonName" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="CityName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="YearHeld" Type="Int16" />
+          <NavigationProperty Name="Country" Relationship="WSC2015_RedoModel.FK__Marathon__Countr__398D8EEE" FromRole="Marathon" ToRole="Country" />
+          <NavigationProperty Name="Events" Relationship="WSC2015_RedoModel.FK__Event__MarathonI__36B12243" FromRole="Marathon" ToRole="Event" />
+        </EntityType>
+        <EntityType Name="Position">
+          <Key>
+            <PropertyRef Name="PositionId" />
+          </Key>
+          <Property Name="PositionId" Type="Int32" Nullable="false" />
+          <Property Name="PositionName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="PositionDescription" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="PayPeriod" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="false" />
+          <Property Name="PayRate" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Staffs" Relationship="WSC2015_RedoModel.FK_Staff_Position" FromRole="Position" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="RaceKitOption">
+          <Key>
+            <PropertyRef Name="RaceKitOptionId" />
+          </Key>
+          <Property Name="RaceKitOptionId" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="RaceKitOption1" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Registrations" Relationship="WSC2015_RedoModel.FK__Registrat__RaceK__32E0915F" FromRole="RaceKitOption" ToRole="Registration" />
+        </EntityType>
+        <EntityType Name="Registration">
+          <Key>
+            <PropertyRef Name="RegistrationId" />
+          </Key>
+          <Property Name="RegistrationId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RunnerId" Type="Int32" Nullable="false" />
+          <Property Name="RegistrationDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="RaceKitOptionId" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="RegistrationStatusId" Type="Byte" Nullable="false" />
+          <Property Name="Cost" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <Property Name="CharityId" Type="Int32" Nullable="false" />
+          <Property Name="SponsorshipTarget" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Charity" Relationship="WSC2015_RedoModel.FK__Registrat__Chari__34C8D9D1" FromRole="Registration" ToRole="Charity" />
+          <NavigationProperty Name="RaceKitOption" Relationship="WSC2015_RedoModel.FK__Registrat__RaceK__32E0915F" FromRole="Registration" ToRole="RaceKitOption" />
+          <NavigationProperty Name="RegistrationStatu" Relationship="WSC2015_RedoModel.FK__Registrat__Regis__33D4B598" FromRole="Registration" ToRole="RegistrationStatu" />
+          <NavigationProperty Name="RegistrationEvents" Relationship="WSC2015_RedoModel.FK__Registrat__Regis__37A5467C" FromRole="Registration" ToRole="RegistrationEvent" />
+          <NavigationProperty Name="Runner" Relationship="WSC2015_RedoModel.FK__Registrat__Runne__31EC6D26" FromRole="Registration" ToRole="Runner" />
+          <NavigationProperty Name="Sponsorships" Relationship="WSC2015_RedoModel.FK__Sponsorsh__Regis__30F848ED" FromRole="Registration" ToRole="Sponsorship" />
+        </EntityType>
+        <EntityType Name="RegistrationEvent">
+          <Key>
+            <PropertyRef Name="RegistrationEventId" />
+          </Key>
+          <Property Name="RegistrationEventId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistrationId" Type="Int32" Nullable="false" />
+          <Property Name="EventId" Type="String" Nullable="false" MaxLength="6" FixedLength="true" Unicode="true" />
+          <Property Name="BibNumber" Type="Int16" />
+          <Property Name="RaceTime" Type="Int32" />
+          <NavigationProperty Name="Event" Relationship="WSC2015_RedoModel.FK__Registrat__Event__38996AB5" FromRole="RegistrationEvent" ToRole="Event" />
+          <NavigationProperty Name="Registration" Relationship="WSC2015_RedoModel.FK__Registrat__Regis__37A5467C" FromRole="RegistrationEvent" ToRole="Registration" />
+        </EntityType>
+        <EntityType Name="RegistrationStatu">
+          <Key>
+            <PropertyRef Name="RegistrationStatusId" />
+          </Key>
+          <Property Name="RegistrationStatusId" Type="Byte" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RegistrationStatus" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Registrations" Relationship="WSC2015_RedoModel.FK__Registrat__Regis__33D4B598" FromRole="RegistrationStatu" ToRole="Registration" />
+        </EntityType>
+        <EntityType Name="Role">
+          <Key>
+            <PropertyRef Name="RoleId" />
+          </Key>
+          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="WSC2015_RedoModel.FK__User__RoleId__2B3F6F97" FromRole="Role" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Runner">
+          <Key>
+            <PropertyRef Name="RunnerId" />
+          </Key>
+          <Property Name="RunnerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Country" Relationship="WSC2015_RedoModel.FK__Runner__CountryC__2E1BDC42" FromRole="Runner" ToRole="Country" />
+          <NavigationProperty Name="Gender1" Relationship="WSC2015_RedoModel.FK__Runner__Gender__2D27B809" FromRole="Runner" ToRole="Gender" />
+          <NavigationProperty Name="Registrations" Relationship="WSC2015_RedoModel.FK__Registrat__Runne__31EC6D26" FromRole="Runner" ToRole="Registration" />
+          <NavigationProperty Name="User" Relationship="WSC2015_RedoModel.FK__Runner__Email__2C3393D0" FromRole="Runner" ToRole="User" />
+        </EntityType>
+        <EntityType Name="Sponsorship">
+          <Key>
+            <PropertyRef Name="SponsorshipId" />
+          </Key>
+          <Property Name="SponsorshipId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="SponsorName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationId" Type="Int32" Nullable="false" />
+          <Property Name="Amount" Type="Decimal" Nullable="false" Precision="10" Scale="2" />
+          <NavigationProperty Name="Registration" Relationship="WSC2015_RedoModel.FK__Sponsorsh__Regis__30F848ED" FromRole="Sponsorship" ToRole="Registration" />
+        </EntityType>
+        <EntityType Name="Staff">
+          <Key>
+            <PropertyRef Name="StaffId" />
+          </Key>
+          <Property Name="StaffId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="false" />
+          <Property Name="DateOfBirth" Type="DateTime" Nullable="false" Precision="0" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="20" FixedLength="false" Unicode="false" />
+          <Property Name="PositionId" Type="Int32" Nullable="false" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="500" FixedLength="false" Unicode="false" />
+          <Property Name="Comments" Type="String" MaxLength="5000" FixedLength="false" Unicode="false" />
+          <Property Name="LastName" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Position" Relationship="WSC2015_RedoModel.FK_Staff_Position" FromRole="Staff" ToRole="Position" />
+          <NavigationProperty Name="Timesheets" Relationship="WSC2015_RedoModel.FK_Timesheet_Staff" FromRole="Staff" ToRole="Timesheet" />
+        </EntityType>
+        <EntityType Name="Timesheet">
+          <Key>
+            <PropertyRef Name="TimesheetId" />
+          </Key>
+          <Property Name="TimesheetId" Type="Int32" Nullable="false" />
+          <Property Name="StaffId" Type="Int32" Nullable="false" />
+          <Property Name="StartDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="EndDateTime" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="PayAmount" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Staff" Relationship="WSC2015_RedoModel.FK_Timesheet_Staff" FromRole="Timesheet" ToRole="Staff" />
+        </EntityType>
+        <EntityType Name="User">
+          <Key>
+            <PropertyRef Name="Email" />
+          </Key>
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="FirstName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="RoleId" Type="String" Nullable="false" MaxLength="1" FixedLength="true" Unicode="true" />
+          <NavigationProperty Name="Role" Relationship="WSC2015_RedoModel.FK__User__RoleId__2B3F6F97" FromRole="User" ToRole="Role" />
+          <NavigationProperty Name="Runners" Relationship="WSC2015_RedoModel.FK__Runner__Email__2C3393D0" FromRole="User" ToRole="Runner" />
+        </EntityType>
+        <EntityType Name="Volunteer">
+          <Key>
+            <PropertyRef Name="VolunteerId" />
+          </Key>
+          <Property Name="VolunteerId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FirstName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Country" Relationship="WSC2015_RedoModel.FK__Volunteer__Count__300424B4" FromRole="Volunteer" ToRole="Country" />
+          <NavigationProperty Name="Gender1" Relationship="WSC2015_RedoModel.FK__Volunteer__Gende__2F10007B" FromRole="Volunteer" ToRole="Gender" />
+        </EntityType>
+        <EntityType Name="Rank_View">
+          <Key>
+            <PropertyRef Name="RunnerId" />
+            <PropertyRef Name="MarathonName" />
+            <PropertyRef Name="EventName" />
+            <PropertyRef Name="overallrank" />
+            <PropertyRef Name="categoryrank" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="category" />
+            <PropertyRef Name="EventTypeName" />
+            <PropertyRef Name="RegistrationEventId" />
+          </Key>
+          <Property Name="RunnerId" Type="Int32" Nullable="false" />
+          <Property Name="MarathonName" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="EventName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RaceTime" Type="Int32" />
+          <Property Name="overallrank" Type="Int32" Nullable="false" />
+          <Property Name="categoryrank" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="DateOfBirth" Type="DateTime" Precision="3" />
+          <Property Name="category" Type="String" Nullable="false" MaxLength="1" FixedLength="false" Unicode="false" />
+          <Property Name="EventTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationEventId" Type="Int32" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Sponsor_View">
+          <Key>
+            <PropertyRef Name="RegistrationEventId" />
+            <PropertyRef Name="MarathonId" />
+          </Key>
+          <Property Name="Expr1" Type="String" MaxLength="201" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationEventId" Type="Int32" Nullable="false" />
+          <Property Name="MarathonId" Type="Byte" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Volunteer_View">
+          <Key>
+            <PropertyRef Name="VolunteerId" />
+            <PropertyRef Name="CountryCode" />
+            <PropertyRef Name="Gender" />
+            <PropertyRef Name="CountryName" />
+          </Key>
+          <Property Name="VolunteerId" Type="Int32" Nullable="false" />
+          <Property Name="FirstName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="CountryCode" Type="String" Nullable="false" MaxLength="3" FixedLength="true" Unicode="true" />
+          <Property Name="Gender" Type="String" Nullable="false" MaxLength="10" FixedLength="false" Unicode="true" />
+          <Property Name="CountryName" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+        </EntityType>
+        <Association Name="FK__Registrat__Chari__34C8D9D1">
+          <End Type="WSC2015_RedoModel.Charity" Role="Charity" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Charity">
+              <PropertyRef Name="CharityId" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="CharityId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Marathon__Countr__398D8EEE">
+          <End Type="WSC2015_RedoModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Marathon" Role="Marathon" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryCode" />
+            </Principal>
+            <Dependent Role="Marathon">
+              <PropertyRef Name="CountryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Runner__CountryC__2E1BDC42">
+          <End Type="WSC2015_RedoModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Runner" Role="Runner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryCode" />
+            </Principal>
+            <Dependent Role="Runner">
+              <PropertyRef Name="CountryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Volunteer__Count__300424B4">
+          <End Type="WSC2015_RedoModel.Country" Role="Country" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Volunteer" Role="Volunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Country">
+              <PropertyRef Name="CountryCode" />
+            </Principal>
+            <Dependent Role="Volunteer">
+              <PropertyRef Name="CountryCode" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Event__EventType__35BCFE0A">
+          <End Type="WSC2015_RedoModel.EventType" Role="EventType" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Event" Role="Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="EventType">
+              <PropertyRef Name="EventTypeId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="EventTypeId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Event__MarathonI__36B12243">
+          <End Type="WSC2015_RedoModel.Marathon" Role="Marathon" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Event" Role="Event" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Marathon">
+              <PropertyRef Name="MarathonId" />
+            </Principal>
+            <Dependent Role="Event">
+              <PropertyRef Name="MarathonId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Event__38996AB5">
+          <End Type="WSC2015_RedoModel.Event" Role="Event" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.RegistrationEvent" Role="RegistrationEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Event">
+              <PropertyRef Name="EventId" />
+            </Principal>
+            <Dependent Role="RegistrationEvent">
+              <PropertyRef Name="EventId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Runner__Gender__2D27B809">
+          <End Type="WSC2015_RedoModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Runner" Role="Runner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Gender1" />
+            </Principal>
+            <Dependent Role="Runner">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Volunteer__Gende__2F10007B">
+          <End Type="WSC2015_RedoModel.Gender" Role="Gender" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Volunteer" Role="Volunteer" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Gender">
+              <PropertyRef Name="Gender1" />
+            </Principal>
+            <Dependent Role="Volunteer">
+              <PropertyRef Name="Gender" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Staff_Position">
+          <End Type="WSC2015_RedoModel.Position" Role="Position" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Staff" Role="Staff" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Position">
+              <PropertyRef Name="PositionId" />
+            </Principal>
+            <Dependent Role="Staff">
+              <PropertyRef Name="PositionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__RaceK__32E0915F">
+          <End Type="WSC2015_RedoModel.RaceKitOption" Role="RaceKitOption" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RaceKitOption">
+              <PropertyRef Name="RaceKitOptionId" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="RaceKitOptionId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Regis__33D4B598">
+          <End Type="WSC2015_RedoModel.RegistrationStatu" Role="RegistrationStatu" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="RegistrationStatu">
+              <PropertyRef Name="RegistrationStatusId" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="RegistrationStatusId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Regis__37A5467C">
+          <End Type="WSC2015_RedoModel.Registration" Role="Registration" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.RegistrationEvent" Role="RegistrationEvent" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="RegistrationId" />
+            </Principal>
+            <Dependent Role="RegistrationEvent">
+              <PropertyRef Name="RegistrationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Registrat__Runne__31EC6D26">
+          <End Type="WSC2015_RedoModel.Runner" Role="Runner" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Registration" Role="Registration" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Runner">
+              <PropertyRef Name="RunnerId" />
+            </Principal>
+            <Dependent Role="Registration">
+              <PropertyRef Name="RunnerId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Sponsorsh__Regis__30F848ED">
+          <End Type="WSC2015_RedoModel.Registration" Role="Registration" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Sponsorship" Role="Sponsorship" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Registration">
+              <PropertyRef Name="RegistrationId" />
+            </Principal>
+            <Dependent Role="Sponsorship">
+              <PropertyRef Name="RegistrationId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__User__RoleId__2B3F6F97">
+          <End Type="WSC2015_RedoModel.Role" Role="Role" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.User" Role="User" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="RoleId" />
+            </Principal>
+            <Dependent Role="User">
+              <PropertyRef Name="RoleId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Runner__Email__2C3393D0">
+          <End Type="WSC2015_RedoModel.User" Role="User" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Runner" Role="Runner" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="User">
+              <PropertyRef Name="Email" />
+            </Principal>
+            <Dependent Role="Runner">
+              <PropertyRef Name="Email" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_Timesheet_Staff">
+          <End Type="WSC2015_RedoModel.Staff" Role="Staff" Multiplicity="1" />
+          <End Type="WSC2015_RedoModel.Timesheet" Role="Timesheet" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Staff">
+              <PropertyRef Name="StaffId" />
+            </Principal>
+            <Dependent Role="Timesheet">
+              <PropertyRef Name="StaffId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="Runner_View">
+          <Key>
+            <PropertyRef Name="Email" />
+            <PropertyRef Name="RegistrationStatus" />
+            <PropertyRef Name="EventTypeName" />
+            <PropertyRef Name="MarathonId" />
+            <PropertyRef Name="RunnerId" />
+          </Key>
+          <Property Name="FirstName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="LastName" Type="String" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="Email" Type="String" Nullable="false" MaxLength="100" FixedLength="false" Unicode="true" />
+          <Property Name="RegistrationStatus" Type="String" Nullable="false" MaxLength="80" FixedLength="false" Unicode="true" />
+          <Property Name="EventTypeName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <Property Name="MarathonId" Type="Byte" Nullable="false" />
+          <Property Name="RunnerId" Type="Int32" Nullable="false" />
+        </EntityType>
+        </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="WSC2015_RedoModelStoreContainer" CdmEntityContainer="WSC2015_RedoEntities">
+          <EntitySetMapping Name="Charities">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Charity">
+              <MappingFragment StoreEntitySet="Charity">
+                <ScalarProperty Name="CharityLogo" ColumnName="CharityLogo" />
+                <ScalarProperty Name="CharityDescription" ColumnName="CharityDescription" />
+                <ScalarProperty Name="CharityName" ColumnName="CharityName" />
+                <ScalarProperty Name="CharityId" ColumnName="CharityId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Countries">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Country">
+              <MappingFragment StoreEntitySet="Country">
+                <ScalarProperty Name="CountryFlag" ColumnName="CountryFlag" />
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Events">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Event">
+              <MappingFragment StoreEntitySet="Event">
+                <ScalarProperty Name="MaxParticipants" ColumnName="MaxParticipants" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="MarathonId" ColumnName="MarathonId" />
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="EventTypes">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.EventType">
+              <MappingFragment StoreEntitySet="EventType">
+                <ScalarProperty Name="EventTypeName" ColumnName="EventTypeName" />
+                <ScalarProperty Name="EventTypeId" ColumnName="EventTypeId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Genders">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Gender">
+              <MappingFragment StoreEntitySet="Gender">
+                <ScalarProperty Name="Gender1" ColumnName="Gender" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Marathons">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Marathon">
+              <MappingFragment StoreEntitySet="Marathon">
+                <ScalarProperty Name="YearHeld" ColumnName="YearHeld" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="CityName" ColumnName="CityName" />
+                <ScalarProperty Name="MarathonName" ColumnName="MarathonName" />
+                <ScalarProperty Name="MarathonId" ColumnName="MarathonId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Positions">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Position">
+              <MappingFragment StoreEntitySet="Position">
+                <ScalarProperty Name="PayRate" ColumnName="PayRate" />
+                <ScalarProperty Name="PayPeriod" ColumnName="PayPeriod" />
+                <ScalarProperty Name="PositionDescription" ColumnName="PositionDescription" />
+                <ScalarProperty Name="PositionName" ColumnName="PositionName" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RaceKitOptions">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.RaceKitOption">
+              <MappingFragment StoreEntitySet="RaceKitOption">
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="RaceKitOption1" ColumnName="RaceKitOption" />
+                <ScalarProperty Name="RaceKitOptionId" ColumnName="RaceKitOptionId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Registrations">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Registration">
+              <MappingFragment StoreEntitySet="Registration">
+                <ScalarProperty Name="SponsorshipTarget" ColumnName="SponsorshipTarget" />
+                <ScalarProperty Name="CharityId" ColumnName="CharityId" />
+                <ScalarProperty Name="Cost" ColumnName="Cost" />
+                <ScalarProperty Name="RegistrationStatusId" ColumnName="RegistrationStatusId" />
+                <ScalarProperty Name="RaceKitOptionId" ColumnName="RaceKitOptionId" />
+                <ScalarProperty Name="RegistrationDateTime" ColumnName="RegistrationDateTime" />
+                <ScalarProperty Name="RunnerId" ColumnName="RunnerId" />
+                <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistrationEvents">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.RegistrationEvent">
+              <MappingFragment StoreEntitySet="RegistrationEvent">
+                <ScalarProperty Name="RaceTime" ColumnName="RaceTime" />
+                <ScalarProperty Name="BibNumber" ColumnName="BibNumber" />
+                <ScalarProperty Name="EventId" ColumnName="EventId" />
+                <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
+                <ScalarProperty Name="RegistrationEventId" ColumnName="RegistrationEventId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="RegistrationStatus">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.RegistrationStatu">
+              <MappingFragment StoreEntitySet="RegistrationStatus">
+                <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+                <ScalarProperty Name="RegistrationStatusId" ColumnName="RegistrationStatusId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Roles">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Role">
+              <MappingFragment StoreEntitySet="Role">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Runners">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Runner">
+              <MappingFragment StoreEntitySet="Runner">
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="RunnerId" ColumnName="RunnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sponsorships">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Sponsorship">
+              <MappingFragment StoreEntitySet="Sponsorship">
+                <ScalarProperty Name="Amount" ColumnName="Amount" />
+                <ScalarProperty Name="RegistrationId" ColumnName="RegistrationId" />
+                <ScalarProperty Name="SponsorName" ColumnName="SponsorName" />
+                <ScalarProperty Name="SponsorshipId" ColumnName="SponsorshipId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Staffs">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Staff">
+              <MappingFragment StoreEntitySet="Staff">
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="Comments" ColumnName="Comments" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="PositionId" ColumnName="PositionId" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Timesheets">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Timesheet">
+              <MappingFragment StoreEntitySet="Timesheet">
+                <ScalarProperty Name="PayAmount" ColumnName="PayAmount" />
+                <ScalarProperty Name="EndDateTime" ColumnName="EndDateTime" />
+                <ScalarProperty Name="StartDateTime" ColumnName="StartDateTime" />
+                <ScalarProperty Name="StaffId" ColumnName="StaffId" />
+                <ScalarProperty Name="TimesheetId" ColumnName="TimesheetId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.User">
+              <MappingFragment StoreEntitySet="User">
+                <ScalarProperty Name="RoleId" ColumnName="RoleId" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Volunteers">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Volunteer">
+              <MappingFragment StoreEntitySet="Volunteer">
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="VolunteerId" ColumnName="VolunteerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Rank_View">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Rank_View">
+              <MappingFragment StoreEntitySet="Rank_View">
+                <ScalarProperty Name="RegistrationEventId" ColumnName="RegistrationEventId" />
+                <ScalarProperty Name="EventTypeName" ColumnName="EventTypeName" />
+                <ScalarProperty Name="category" ColumnName="category" />
+                <ScalarProperty Name="DateOfBirth" ColumnName="DateOfBirth" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="categoryrank" ColumnName="categoryrank" />
+                <ScalarProperty Name="overallrank" ColumnName="overallrank" />
+                <ScalarProperty Name="RaceTime" ColumnName="RaceTime" />
+                <ScalarProperty Name="EventName" ColumnName="EventName" />
+                <ScalarProperty Name="MarathonName" ColumnName="MarathonName" />
+                <ScalarProperty Name="RunnerId" ColumnName="RunnerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Sponsor_View">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Sponsor_View">
+              <MappingFragment StoreEntitySet="Sponsor_View">
+                <ScalarProperty Name="MarathonId" ColumnName="MarathonId" />
+                <ScalarProperty Name="RegistrationEventId" ColumnName="RegistrationEventId" />
+                <ScalarProperty Name="Expr1" ColumnName="Expr1" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Volunteer_View">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Volunteer_View">
+              <MappingFragment StoreEntitySet="Volunteer_View">
+                <ScalarProperty Name="CountryName" ColumnName="CountryName" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="CountryCode" ColumnName="CountryCode" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="VolunteerId" ColumnName="VolunteerId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Runner_View">
+            <EntityTypeMapping TypeName="WSC2015_RedoModel.Runner_View">
+              <MappingFragment StoreEntitySet="Runner_View">
+                <ScalarProperty Name="RunnerId" ColumnName="RunnerId" />
+                <ScalarProperty Name="MarathonId" ColumnName="MarathonId" />
+                <ScalarProperty Name="EventTypeName" ColumnName="EventTypeName" />
+                <ScalarProperty Name="RegistrationStatus" ColumnName="RegistrationStatus" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="LastName" ColumnName="LastName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="true" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>
