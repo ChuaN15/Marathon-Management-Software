@@ -12,4 +12,4 @@ The marathon management software is used to manage marathon event including regi
 ![](https://raw.githubusercontent.com/ChuaN15/Marathon-Management-Software/master/how%20long.PNG)
 
 # BMI Calculator
-![](https://raw.githubusercontent.com/ChuaN15/Marathon-Management-Software/master/bmi2.PNG)
+![](https://raw.githubusercontent.com/ChuaN15/Marathon-Management-Software/master/bmi2.PNG) 
